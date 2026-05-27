@@ -2,18 +2,13 @@ package notionapi
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
 	"time"
 )
 
 type PageID string
 
-func (pID PageID) String() string {
-	return string(pID)
-}
+func (pID PageID) String() string { _ = "STUB: not implemented"; return "" }
 
 type PageService interface {
 	Create(context.Context, *PageCreateRequest) (*Page, error)
@@ -41,18 +36,8 @@ type PageClient struct {
 //
 // See https://developers.notion.com/reference/post-page
 func (pc *PageClient) Create(ctx context.Context, requestBody *PageCreateRequest) (*Page, error) {
-	res, err := pc.apiClient.request(ctx, http.MethodPost, "pages", nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	return handlePageResponse(res)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PageCreateRequest represents the request body for PageClient.Create.
@@ -84,18 +69,8 @@ type PageCreateRequest struct {
 //
 // See https://developers.notion.com/reference/get-page
 func (pc *PageClient) Get(ctx context.Context, id PageID) (*Page, error) {
-	res, err := pc.apiClient.request(ctx, http.MethodGet, fmt.Sprintf("pages/%s", id.String()), nil, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	return handlePageResponse(res)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Updates the properties of a page in a database. The properties body param of
@@ -114,18 +89,8 @@ func (pc *PageClient) Get(ctx context.Context, id PageID) (*Page, error) {
 //
 // See https://developers.notion.com/reference/patch-page
 func (pc *PageClient) Update(ctx context.Context, id PageID, request *PageUpdateRequest) (*Page, error) {
-	res, err := pc.apiClient.request(ctx, http.MethodPatch, fmt.Sprintf("pages/%s", id.String()), nil, request)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	return handlePageResponse(res)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PageUpdateRequest represents the request body for PageClient.Update.
@@ -163,9 +128,7 @@ type Page struct {
 	Cover          *Image     `json:"cover,omitempty"`
 }
 
-func (p *Page) GetObject() ObjectType {
-	return p.Object
-}
+func (p *Page) GetObject() ObjectType { _ = "STUB: not implemented"; return *new(ObjectType) }
 
 type ParentType string
 
@@ -184,11 +147,6 @@ type Parent struct {
 }
 
 func handlePageResponse(res *http.Response) (*Page, error) {
-	var response Page
-	err := json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

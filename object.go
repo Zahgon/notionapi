@@ -1,21 +1,16 @@
 package notionapi
 
 import (
-	"fmt"
 	"time"
 )
 
 type ObjectType string
 
-func (ot ObjectType) String() string {
-	return string(ot)
-}
+func (ot ObjectType) String() string { _ = "STUB: not implemented"; return "" }
 
 type ObjectID string
 
-func (oID ObjectID) String() string {
-	return string(oID)
-}
+func (oID ObjectID) String() string { _ = "STUB: not implemented"; return "" }
 
 type Object interface {
 	GetObject() ObjectType
@@ -23,29 +18,17 @@ type Object interface {
 
 type Color string
 
-func (c Color) String() string {
-	return string(c)
-}
+func (c Color) String() string { _ = "STUB: not implemented"; return "" }
 
-func (c Color) MarshalText() ([]byte, error) {
-	if c == "" {
-		return []byte(ColorDefault), nil
-	}
-
-	return []byte(c), nil
-}
+func (c Color) MarshalText() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 type RichTextType string
 
-func (rtType RichTextType) String() string {
-	return string(rtType)
-}
+func (rtType RichTextType) String() string { _ = "STUB: not implemented"; return "" }
 
 type MentionType string
 
-func (mType MentionType) String() string {
-	return string(mType)
-}
+func (mType MentionType) String() string { _ = "STUB: not implemented"; return "" }
 
 type DatabaseMention struct {
 	ID ObjectID `json:"id"`
@@ -57,9 +40,7 @@ type PageMention struct {
 
 type TemplateMentionType string
 
-func (tMType TemplateMentionType) String() string {
-	return string(tMType)
-}
+func (tMType TemplateMentionType) String() string { _ = "STUB: not implemented"; return "" }
 
 type TemplateMention struct {
 	Type                TemplateMentionType `json:"type"`
@@ -111,46 +92,26 @@ type RelationObject struct {
 
 type FunctionType string
 
-func (ft FunctionType) String() string {
-	return string(ft)
-}
+func (ft FunctionType) String() string { _ = "STUB: not implemented"; return "" }
 
 type Cursor string
 
-func (c Cursor) String() string {
-	return string(c)
-}
+func (c Cursor) String() string { _ = "STUB: not implemented"; return "" }
 
 type Date time.Time
 
-func (d *Date) String() string {
-	return time.Time(*d).Format(time.RFC3339)
-}
+func (d *Date) String() string { _ = "STUB: not implemented"; return "" }
 
-func (d Date) MarshalText() ([]byte, error) {
-	return []byte(d.String()), nil
-}
+func (d Date) MarshalText() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
-func (d *Date) UnmarshalText(data []byte) error {
-	t, err := time.Parse(time.RFC3339, string(data))
+func (d *Date) UnmarshalText(data []byte) error { _ = "STUB: not implemented"; return nil }
 
-	// Because the API does not distinguish between datetime with a
-	// timezone and dates, we eventually have to try both.
-	if err != nil {
-		if _, ok := err.(*time.ParseError); !ok {
-			return err
-		} else {
-			t, err = time.Parse("2006-01-02", string(data)) // Date
-			if err != nil {
-				// Still cannot parse it, nothing else to try.
-				return err
-			}
-		}
-	}
+// Because the API does not distinguish between datetime with a
+// timezone and dates, we eventually have to try both.
 
-	*d = Date(t)
-	return nil
-}
+// Date
+
+// Still cannot parse it, nothing else to try.
 
 type FileType string
 
@@ -175,15 +136,7 @@ type Icon struct {
 }
 
 // GetURL returns the external or internal URL depending on the image type.
-func (i Icon) GetURL() string {
-	if i.File != nil {
-		return i.File.URL
-	}
-	if i.External != nil {
-		return i.External.URL
-	}
-	return ""
-}
+func (i Icon) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 type Emoji string
 
@@ -195,9 +148,7 @@ type CustomEmoji struct {
 
 type PropertyID string
 
-func (pID PropertyID) String() string {
-	return string(pID)
-}
+func (pID PropertyID) String() string { _ = "STUB: not implemented"; return "" }
 
 type Status = Option
 
@@ -206,20 +157,17 @@ type UniqueID struct {
 	Number int     `json:"number"`
 }
 
-func (uID UniqueID) String() string {
-	if uID.Prefix != nil {
-		return fmt.Sprintf("%s-%d", *uID.Prefix, uID.Number)
-	}
-	return fmt.Sprintf("%d", uID.Number)
-}
+func (uID UniqueID) String() string { _ = "STUB: not implemented"; return "" }
 
 type VerificationState string
 
 func (vs VerificationState) String() string {
-	return string(vs)
+	_ = "STUB: not implemented"
+
+	// Verification documented here: https://developers.notion.com/reference/page-property-values#verification
+	return ""
 }
 
-// Verification documented here: https://developers.notion.com/reference/page-property-values#verification
 type Verification struct {
 	State      VerificationState `json:"state"`
 	VerifiedBy *User             `json:"verified_by,omitempty"`

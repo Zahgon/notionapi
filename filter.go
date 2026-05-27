@@ -1,9 +1,5 @@
 package notionapi
 
-import (
-	"encoding/json"
-)
-
 type FilterOperator string
 
 type Filter interface {
@@ -15,24 +11,15 @@ type CompoundFilter map[FilterOperator][]PropertyFilter
 type AndCompoundFilter []Filter
 type OrCompoundFilter []Filter
 
-func (f AndCompoundFilter) filter() {}
-func (f OrCompoundFilter) filter()  {}
+func (f AndCompoundFilter) filter() { _ = "STUB: not implemented"; return }
+func (f OrCompoundFilter) filter()  { _ = "STUB: not implemented"; return }
 
 func (f AndCompoundFilter) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		And []Filter `json:"and"`
-	}{
-		And: f,
-	})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (f OrCompoundFilter) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		Or []Filter `json:"or"`
-	}{
-		Or: f,
-	})
-}
+func (f OrCompoundFilter) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 type Condition string
 
@@ -42,7 +29,7 @@ type TimestampFilter struct {
 	LastEditedTime *DateFilterCondition `json:"last_edited_time,omitempty"`
 }
 
-func (f TimestampFilter) filter() {}
+func (f TimestampFilter) filter() { _ = "STUB: not implemented"; return }
 
 type PropertyFilter struct {
 	Property    string                      `json:"property"`
@@ -61,7 +48,7 @@ type PropertyFilter struct {
 	UniqueId    *UniqueIdFilterCondition    `json:"unique_id,omitempty"`
 }
 
-func (f PropertyFilter) filter() {}
+func (f PropertyFilter) filter() { _ = "STUB: not implemented"; return }
 
 type SearchFilter struct {
 	Value    string `json:"value"`

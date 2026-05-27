@@ -9,23 +9,17 @@ type Error struct {
 	Message string     `json:"message"`
 }
 
-func (e *Error) Error() string {
-	return e.Message
-}
+func (e *Error) Error() string { _ = "STUB: not implemented"; return "" }
 
 type RateLimitedError struct {
 	Message string
 }
 
-func (e *RateLimitedError) Error() string {
-	return e.Message
-}
+func (e *RateLimitedError) Error() string { _ = "STUB: not implemented"; return "" }
 
 type TokenCreateError struct {
 	Code    ErrorCode `json:"error"`
 	Message string    `json:"error_description"`
 }
 
-func (e *TokenCreateError) Error() string {
-	return e.Message
-}
+func (e *TokenCreateError) Error() string { _ = "STUB: not implemented"; return "" }

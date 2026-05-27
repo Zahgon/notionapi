@@ -11,55 +11,22 @@ type DownloadableFileBlock interface {
 }
 
 // GetURL implements DownloadableFileBlock interface for PdfBlock
-func (b *PdfBlock) GetURL() string {
-	if b.Pdf.File != nil {
-		return b.Pdf.File.URL
-	}
-	if b.Pdf.External != nil {
-		return b.Pdf.External.URL
-	}
-	return ""
-}
+func (b *PdfBlock) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetExpiryTime implements DownloadableFileBlock interface for PdfBlock
-func (b *PdfBlock) GetExpiryTime() *time.Time {
-	if b.Pdf.File != nil {
-		return b.Pdf.File.ExpiryTime
-	}
-	return nil
-}
+func (b *PdfBlock) GetExpiryTime() *time.Time { _ = "STUB: not implemented"; return nil }
 
 // GetURL implements DownloadableFileBlock interface for FileBlock
-func (b *FileBlock) GetURL() string {
-	if b.File.File != nil {
-		return b.File.File.URL
-	}
-	if b.File.External != nil {
-		return b.File.External.URL
-	}
-	return ""
-}
+func (b *FileBlock) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetExpiryTime implements DownloadableFileBlock interface for FileBlock
-func (b *FileBlock) GetExpiryTime() *time.Time {
-	if b.File.File != nil {
-		return b.File.File.ExpiryTime
-	}
-	return nil
-}
+func (b *FileBlock) GetExpiryTime() *time.Time { _ = "STUB: not implemented"; return nil }
 
 // GetURL implements DownloadableFileBlock interface for ImageBlock
-func (b *ImageBlock) GetURL() string {
-	return b.Image.GetURL()
-}
+func (b *ImageBlock) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 // GetExpiryTime implements DownloadableFileBlock interface for ImageBlock
-func (b *ImageBlock) GetExpiryTime() *time.Time {
-	if b.Image.File != nil {
-		return b.Image.File.ExpiryTime
-	}
-	return nil
-}
+func (b *ImageBlock) GetExpiryTime() *time.Time { _ = "STUB: not implemented"; return nil }
 
 // Verify that types implement DownloadableFileBlock interface
 var (

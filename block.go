@@ -2,18 +2,12 @@ package notionapi
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
 	"time"
 )
 
 type BlockID string
 
-func (bID BlockID) String() string {
-	return string(bID)
-}
+func (bID BlockID) String() string { _ = "STUB: not implemented"; return "" }
 
 type BlockService interface {
 	AppendChildren(context.Context, BlockID, *AppendBlockChildrenRequest) (*AppendBlockChildrenResponse, error)
@@ -41,23 +35,8 @@ type BlockClient struct {
 //
 // See https://developers.notion.com/reference/patch-block-children
 func (bc *BlockClient) AppendChildren(ctx context.Context, id BlockID, requestBody *AppendBlockChildrenRequest) (*AppendBlockChildrenResponse, error) {
-	res, err := bc.apiClient.request(ctx, http.MethodPatch, fmt.Sprintf("blocks/%s/children", id.String()), nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response AppendBlockChildrenResponse
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type AppendBlockChildrenRequest struct {
@@ -71,23 +50,8 @@ type AppendBlockChildrenRequest struct {
 //
 // Get https://developers.notion.com/reference/retrieve-a-block
 func (bc *BlockClient) Get(ctx context.Context, id BlockID) (Block, error) {
-	res, err := bc.apiClient.request(ctx, http.MethodGet, fmt.Sprintf("blocks/%s", id.String()), nil, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response map[string]interface{}
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-	return decodeBlock(response)
+	_ = "STUB: not implemented"
+	return *new(Block), nil
 }
 
 // Returns a paginated array of child block objects contained in the block using
@@ -96,24 +60,8 @@ func (bc *BlockClient) Get(ctx context.Context, id BlockID) (Block, error) {
 //
 // See https://developers.notion.com/reference/get-block-children
 func (bc *BlockClient) GetChildren(ctx context.Context, id BlockID, pagination *Pagination) (*GetChildrenResponse, error) {
-	res, err := bc.apiClient.request(ctx, http.MethodGet, fmt.Sprintf("blocks/%s/children", id.String()), pagination.ToQuery(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	response := &GetChildrenResponse{}
-	err = json.NewDecoder(res.Body).Decode(response)
-	if err != nil {
-		return nil, err
-	}
-
-	return response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type GetChildrenResponse struct {
@@ -132,23 +80,8 @@ type GetChildrenResponse struct {
 //
 // See https://developers.notion.com/reference/update-a-block
 func (bc *BlockClient) Update(ctx context.Context, id BlockID, requestBody *BlockUpdateRequest) (Block, error) {
-	res, err := bc.apiClient.request(ctx, http.MethodPatch, fmt.Sprintf("blocks/%s", id.String()), nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response map[string]interface{}
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-	return decodeBlock(response)
+	_ = "STUB: not implemented"
+	return *new(Block), nil
 }
 
 type BlockUpdateRequest struct {
@@ -182,30 +115,13 @@ type BlockUpdateRequest struct {
 //
 // See https://developers.notion.com/reference/delete-a-block
 func (bc *BlockClient) Delete(ctx context.Context, id BlockID) (Block, error) {
-	res, err := bc.apiClient.request(ctx, http.MethodDelete, fmt.Sprintf("blocks/%s", id.String()), nil, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response map[string]interface{}
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-	return decodeBlock(response)
+	_ = "STUB: not implemented"
+	return *new(Block), nil
 }
 
 type BlockType string
 
-func (bt BlockType) String() string {
-	return string(bt)
-}
+func (bt BlockType) String() string { _ = "STUB: not implemented"; return "" }
 
 type Block interface {
 	GetType() BlockType
@@ -223,23 +139,7 @@ type Block interface {
 
 type Blocks []Block
 
-func (b *Blocks) UnmarshalJSON(data []byte) error {
-	var err error
-	mapArr := make([]map[string]interface{}, 0)
-	if err = json.Unmarshal(data, &mapArr); err != nil {
-		return err
-	}
-
-	result := make([]Block, len(mapArr))
-	for i, prop := range mapArr {
-		if result[i], err = decodeBlock(prop); err != nil {
-			return err
-		}
-	}
-
-	*b = result
-	return nil
-}
+func (b *Blocks) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // BasicBlock defines the common fields of all Notion block types.
 // See https://developers.notion.com/reference/block for the list.
@@ -257,136 +157,69 @@ type BasicBlock struct {
 	Parent         *Parent    `json:"parent,omitempty"`
 }
 
-func (b BasicBlock) GetType() BlockType {
-	return b.Type
-}
+func (b BasicBlock) GetType() BlockType { _ = "STUB: not implemented"; return *new(BlockType) }
 
-func (b BasicBlock) GetID() BlockID {
-	return b.ID
-}
+func (b BasicBlock) GetID() BlockID { _ = "STUB: not implemented"; return *new(BlockID) }
 
-func (b BasicBlock) GetObject() ObjectType {
-	return b.Object
-}
+func (b BasicBlock) GetObject() ObjectType { _ = "STUB: not implemented"; return *new(ObjectType) }
 
-func (b BasicBlock) GetCreatedTime() *time.Time {
-	return b.CreatedTime
-}
+func (b BasicBlock) GetCreatedTime() *time.Time { _ = "STUB: not implemented"; return nil }
 
-func (b BasicBlock) GetLastEditedTime() *time.Time {
-	return b.LastEditedTime
-}
+func (b BasicBlock) GetLastEditedTime() *time.Time { _ = "STUB: not implemented"; return nil }
 
-func (b BasicBlock) GetCreatedBy() *User {
-	return b.CreatedBy
-}
+func (b BasicBlock) GetCreatedBy() *User { _ = "STUB: not implemented"; return nil }
 
-func (b BasicBlock) GetLastEditedBy() *User {
-	return b.LastEditedBy
-}
+func (b BasicBlock) GetLastEditedBy() *User { _ = "STUB: not implemented"; return nil }
 
-func (b BasicBlock) GetHasChildren() bool {
-	return b.HasChildren
-}
+func (b BasicBlock) GetHasChildren() bool { _ = "STUB: not implemented"; return false }
 
-func (b BasicBlock) GetArchived() bool {
-	return b.Archived
-}
+func (b BasicBlock) GetArchived() bool { _ = "STUB: not implemented"; return false }
 
-func (b BasicBlock) GetParent() *Parent {
-	return b.Parent
-}
-func concatenateRichText(richtext []RichText) string {
-	var result string
-	for _, rt := range richtext {
-		result += rt.PlainText
-	}
-	return result
-}
+func (b BasicBlock) GetParent() *Parent { _ = "STUB: not implemented"; return nil }
 
-func (h Heading1Block) GetRichTextString() string {
-	return concatenateRichText(h.Heading1.RichText)
-}
+func concatenateRichText(richtext []RichText) string { _ = "STUB: not implemented"; return "" }
 
-func (p ParagraphBlock) GetRichTextString() string {
-	return concatenateRichText(p.Paragraph.RichText)
-}
+func (h Heading1Block) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (h Heading2Block) GetRichTextString() string {
-	return concatenateRichText(h.Heading2.RichText)
-}
+func (p ParagraphBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (h Heading3Block) GetRichTextString() string {
-	return concatenateRichText(h.Heading3.RichText)
-}
+func (h Heading2Block) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (c CalloutBlock) GetRichTextString() string {
-	return concatenateRichText(c.Callout.RichText)
-}
+func (h Heading3Block) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (q QuoteBlock) GetRichTextString() string {
-	return concatenateRichText(q.Quote.RichText)
-}
+func (c CalloutBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b BulletedListItemBlock) GetRichTextString() string {
-	return concatenateRichText(b.BulletedListItem.RichText)
-}
+func (q QuoteBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (n NumberedListItemBlock) GetRichTextString() string {
-	return concatenateRichText(n.NumberedListItem.RichText)
-}
+func (b BulletedListItemBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (t ToDoBlock) GetRichTextString() string {
-	return concatenateRichText(t.ToDo.RichText)
-}
+func (n NumberedListItemBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b ToggleBlock) GetRichTextString() string {
-	return concatenateRichText(b.Toggle.RichText)
-}
+func (t ToDoBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b EmbedBlock) GetRichTextString() string {
-	return concatenateRichText(b.Embed.Caption)
-}
+func (b ToggleBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b ImageBlock) GetRichTextString() string {
-	return concatenateRichText(b.Image.Caption)
-}
+func (b EmbedBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b AudioBlock) GetRichTextString() string {
-	return concatenateRichText(b.Audio.Caption)
-}
+func (b ImageBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b VideoBlock) GetRichTextString() string {
-	return concatenateRichText(b.Video.Caption)
-}
+func (b AudioBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b FileBlock) GetRichTextString() string {
-	return concatenateRichText(b.File.Caption)
-}
+func (b VideoBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b PdfBlock) GetRichTextString() string {
-	return concatenateRichText(b.Pdf.Caption)
-}
+func (b FileBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b BookmarkBlock) GetRichTextString() string {
-	return concatenateRichText(b.Bookmark.Caption)
-}
+func (b PdfBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b TemplateBlock) GetRichTextString() string {
-	return concatenateRichText(b.Template.RichText)
-}
+func (b BookmarkBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b LinkPreviewBlock) GetRichTextString() string {
-	return b.LinkPreview.URL
-}
+func (b TemplateBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b EquationBlock) GetRichTextString() string {
-	return b.Equation.Expression
-}
+func (b LinkPreviewBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
-func (b BasicBlock) GetRichTextString() string {
-	return "No rich text of a basic block."
-}
+func (b EquationBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
+
+func (b BasicBlock) GetRichTextString() string { _ = "STUB: not implemented"; return "" }
 
 var _ Block = (*BasicBlock)(nil)
 
@@ -536,15 +369,7 @@ type Image struct {
 }
 
 // GetURL returns the external or internal URL depending on the image type.
-func (i Image) GetURL() string {
-	if i.File != nil {
-		return i.File.URL
-	}
-	if i.External != nil {
-		return i.External.URL
-	}
-	return ""
-}
+func (i Image) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 type AudioBlock struct {
 	BasicBlock
@@ -559,15 +384,7 @@ type Audio struct {
 }
 
 // GetURL returns the external or internal URL depending on the image type.
-func (i Audio) GetURL() string {
-	if i.File != nil {
-		return i.File.URL
-	}
-	if i.External != nil {
-		return i.External.URL
-	}
-	return ""
-}
+func (i Audio) GetURL() string { _ = "STUB: not implemented"; return "" }
 
 type CodeBlock struct {
 	BasicBlock
@@ -753,102 +570,11 @@ type appendBlockResponse struct {
 }
 
 func (r *AppendBlockChildrenResponse) UnmarshalJSON(data []byte) error {
-	var raw appendBlockResponse
-	if err := json.Unmarshal(data, &raw); err != nil {
-		return err
-	}
-	blocks := make([]Block, 0)
-	for _, b := range raw.Results {
-		block, err := decodeBlock(b)
-		if err != nil {
-			return err
-		}
-		blocks = append(blocks, block)
-	}
-
-	*r = AppendBlockChildrenResponse{
-		Object:  raw.Object,
-		Results: blocks,
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func decodeBlock(raw map[string]interface{}) (Block, error) {
-	var b Block
-	switch BlockType(raw["type"].(string)) {
-	case BlockTypeParagraph:
-		b = &ParagraphBlock{}
-	case BlockTypeHeading1:
-		b = &Heading1Block{}
-	case BlockTypeHeading2:
-		b = &Heading2Block{}
-	case BlockTypeHeading3:
-		b = &Heading3Block{}
-	case BlockTypeCallout:
-		b = &CalloutBlock{}
-	case BlockTypeQuote:
-		b = &QuoteBlock{}
-	case BlockTypeBulletedListItem:
-		b = &BulletedListItemBlock{}
-	case BlockTypeNumberedListItem:
-		b = &NumberedListItemBlock{}
-	case BlockTypeToDo:
-		b = &ToDoBlock{}
-	case BlockTypeCode:
-		b = &CodeBlock{}
-	case BlockTypeToggle:
-		b = &ToggleBlock{}
-	case BlockTypeChildPage:
-		b = &ChildPageBlock{}
-	case BlockTypeEmbed:
-		b = &EmbedBlock{}
-	case BlockTypeImage:
-		b = &ImageBlock{}
-	case BlockTypeVideo:
-		b = &VideoBlock{}
-	case BlockTypeFile:
-		b = &FileBlock{}
-	case BlockTypePdf:
-		b = &PdfBlock{}
-	case BlockTypeBookmark:
-		b = &BookmarkBlock{}
-	case BlockTypeChildDatabase:
-		b = &ChildDatabaseBlock{}
-	case BlockTypeTableOfContents:
-		b = &TableOfContentsBlock{}
-	case BlockTypeDivider:
-		b = &DividerBlock{}
-	case BlockTypeEquation:
-		b = &EquationBlock{}
-	case BlockTypeBreadcrumb:
-		b = &BreadcrumbBlock{}
-	case BlockTypeColumn:
-		b = &ColumnBlock{}
-	case BlockTypeColumnList:
-		b = &ColumnListBlock{}
-	case BlockTypeLinkPreview:
-		b = &LinkPreviewBlock{}
-	case BlockTypeLinkToPage:
-		b = &LinkToPageBlock{}
-	case BlockTypeTemplate:
-		b = &TemplateBlock{}
-	case BlockTypeSyncedBlock:
-		b = &SyncedBlock{}
-	case BlockTypeTableBlock:
-		b = &TableBlock{}
-	case BlockTypeTableRowBlock:
-		b = &TableRowBlock{}
-
-	case BlockTypeUnsupported:
-		b = &UnsupportedBlock{}
-	default:
-		return &UnsupportedBlock{}, nil
-	}
-	j, err := json.Marshal(raw)
-	if err != nil {
-		return nil, err
-	}
-
-	err = json.Unmarshal(j, b)
-	return b, err
+	_ = "STUB: not implemented"
+	return *new(Block), nil
 }

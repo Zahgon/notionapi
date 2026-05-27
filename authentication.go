@@ -2,9 +2,6 @@ package notionapi
 
 import (
 	"context"
-	"encoding/json"
-	"log"
-	"net/http"
 )
 
 type AuthenticationService interface {
@@ -20,34 +17,11 @@ type AuthenticationClient struct {
 //
 // See https://developers.notion.com/reference/create-a-token
 func (cc *AuthenticationClient) CreateToken(ctx context.Context, request *TokenCreateRequest) (*TokenCreateResponse, error) {
-	res, err := cc.apiClient.requestImpl(ctx, http.MethodPost, "oauth/token", nil, request, true, decodeTokenCreateError)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response TokenCreateResponse
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func decodeTokenCreateError(data []byte) error {
-	var apiErr TokenCreateError
-	err := json.Unmarshal(data, &apiErr)
-	if err != nil {
-		return err
-	}
-	return &apiErr
-}
+func decodeTokenCreateError(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 // TokenCreateRequest represents the request body for AuthenticationClient.CreateToken.
 type TokenCreateRequest struct {

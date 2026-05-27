@@ -1,10 +1,5 @@
 package notionapi
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type PropertyConfigType string
 
 type PropertyConfig interface {
@@ -19,12 +14,11 @@ type TitlePropertyConfig struct {
 }
 
 func (p TitlePropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
-func (p TitlePropertyConfig) GetID() PropertyID {
-	return p.ID
-}
+func (p TitlePropertyConfig) GetID() PropertyID { _ = "STUB: not implemented"; return *new(PropertyID) }
 
 type RichTextPropertyConfig struct {
 	ID       PropertyID         `json:"id,omitempty"`
@@ -33,11 +27,13 @@ type RichTextPropertyConfig struct {
 }
 
 func (p RichTextPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p RichTextPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type NumberPropertyConfig struct {
@@ -48,20 +44,20 @@ type NumberPropertyConfig struct {
 
 type FormatType string
 
-func (ft FormatType) String() string {
-	return string(ft)
-}
+func (ft FormatType) String() string { _ = "STUB: not implemented"; return "" }
 
 type NumberFormat struct {
 	Format FormatType `json:"format"`
 }
 
 func (p NumberPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p NumberPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type SelectPropertyConfig struct {
@@ -71,11 +67,13 @@ type SelectPropertyConfig struct {
 }
 
 func (p SelectPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p SelectPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type MultiSelectPropertyConfig struct {
@@ -89,11 +87,13 @@ type Select struct {
 }
 
 func (p MultiSelectPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p MultiSelectPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type DatePropertyConfig struct {
@@ -103,12 +103,11 @@ type DatePropertyConfig struct {
 }
 
 func (p DatePropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
-func (p DatePropertyConfig) GetID() PropertyID {
-	return p.ID
-}
+func (p DatePropertyConfig) GetID() PropertyID { _ = "STUB: not implemented"; return *new(PropertyID) }
 
 type PeoplePropertyConfig struct {
 	ID     PropertyID         `json:"id,omitempty"`
@@ -117,11 +116,13 @@ type PeoplePropertyConfig struct {
 }
 
 func (p PeoplePropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p PeoplePropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type FilesPropertyConfig struct {
@@ -131,12 +132,11 @@ type FilesPropertyConfig struct {
 }
 
 func (p FilesPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
-func (p FilesPropertyConfig) GetID() PropertyID {
-	return p.ID
-}
+func (p FilesPropertyConfig) GetID() PropertyID { _ = "STUB: not implemented"; return *new(PropertyID) }
 
 type CheckboxPropertyConfig struct {
 	ID       PropertyID         `json:"id,omitempty"`
@@ -145,11 +145,13 @@ type CheckboxPropertyConfig struct {
 }
 
 func (p CheckboxPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p CheckboxPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type URLPropertyConfig struct {
@@ -159,12 +161,11 @@ type URLPropertyConfig struct {
 }
 
 func (p URLPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
-func (p URLPropertyConfig) GetID() PropertyID {
-	return p.ID
-}
+func (p URLPropertyConfig) GetID() PropertyID { _ = "STUB: not implemented"; return *new(PropertyID) }
 
 type EmailPropertyConfig struct {
 	ID    PropertyID         `json:"id,omitempty"`
@@ -173,12 +174,11 @@ type EmailPropertyConfig struct {
 }
 
 func (p EmailPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
-func (p EmailPropertyConfig) GetID() PropertyID {
-	return p.ID
-}
+func (p EmailPropertyConfig) GetID() PropertyID { _ = "STUB: not implemented"; return *new(PropertyID) }
 
 type PhoneNumberPropertyConfig struct {
 	ID          PropertyID         `json:"id,omitempty"`
@@ -187,11 +187,13 @@ type PhoneNumberPropertyConfig struct {
 }
 
 func (p PhoneNumberPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p PhoneNumberPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type FormulaPropertyConfig struct {
@@ -205,11 +207,13 @@ type FormulaConfig struct {
 }
 
 func (p FormulaPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p FormulaPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type RelationPropertyConfig struct {
@@ -219,9 +223,7 @@ type RelationPropertyConfig struct {
 
 type RelationConfigType string
 
-func (rp RelationConfigType) String() string {
-	return string(rp)
-}
+func (rp RelationConfigType) String() string { _ = "STUB: not implemented"; return "" }
 
 type SingleProperty struct{}
 
@@ -237,11 +239,13 @@ type RelationConfig struct {
 }
 
 func (p RelationPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p RelationPropertyConfig) GetID() PropertyID {
-	return ""
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type RollupPropertyConfig struct {
@@ -259,11 +263,13 @@ type RollupConfig struct {
 }
 
 func (p RollupPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p RollupPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type CreatedTimePropertyConfig struct {
@@ -273,11 +279,13 @@ type CreatedTimePropertyConfig struct {
 }
 
 func (p CreatedTimePropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p CreatedTimePropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type CreatedByPropertyConfig struct {
@@ -287,11 +295,13 @@ type CreatedByPropertyConfig struct {
 }
 
 func (p CreatedByPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p CreatedByPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type LastEditedTimePropertyConfig struct {
@@ -301,11 +311,13 @@ type LastEditedTimePropertyConfig struct {
 }
 
 func (p LastEditedTimePropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p LastEditedTimePropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type LastEditedByPropertyConfig struct {
@@ -315,11 +327,13 @@ type LastEditedByPropertyConfig struct {
 }
 
 func (p LastEditedByPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p LastEditedByPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type StatusPropertyConfig struct {
@@ -329,11 +343,13 @@ type StatusPropertyConfig struct {
 }
 
 func (p StatusPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p StatusPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type StatusConfig struct {
@@ -359,11 +375,13 @@ type UniqueIDConfig struct {
 }
 
 func (p UniqueIDPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p UniqueIDPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type VerificationPropertyConfig struct {
@@ -373,11 +391,13 @@ type VerificationPropertyConfig struct {
 }
 
 func (p VerificationPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p VerificationPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type ButtonPropertyConfig struct {
@@ -387,100 +407,20 @@ type ButtonPropertyConfig struct {
 }
 
 func (p ButtonPropertyConfig) GetType() PropertyConfigType {
-	return p.Type
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigType)
 }
 
 func (p ButtonPropertyConfig) GetID() PropertyID {
-	return p.ID
+	_ = "STUB: not implemented"
+	return *new(PropertyID)
 }
 
 type PropertyConfigs map[string]PropertyConfig
 
-func (p *PropertyConfigs) UnmarshalJSON(data []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(data, &raw); err != nil {
-		return err
-	}
-	props, err := parsePropertyConfigs(raw)
-	if err != nil {
-		return err
-	}
-
-	*p = props
-	return nil
-}
+func (p *PropertyConfigs) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 func parsePropertyConfigs(raw map[string]interface{}) (PropertyConfigs, error) {
-	result := make(PropertyConfigs)
-	for k, v := range raw {
-		var p PropertyConfig
-		switch rawProperty := v.(type) {
-		case map[string]interface{}:
-			switch PropertyConfigType(rawProperty["type"].(string)) {
-			case PropertyConfigTypeTitle:
-				p = &TitlePropertyConfig{}
-			case PropertyConfigTypeRichText:
-				p = &RichTextPropertyConfig{}
-			case PropertyConfigTypeNumber:
-				p = &NumberPropertyConfig{}
-			case PropertyConfigTypeSelect:
-				p = &SelectPropertyConfig{}
-			case PropertyConfigTypeMultiSelect:
-				p = &MultiSelectPropertyConfig{}
-			case PropertyConfigTypeDate:
-				p = &DatePropertyConfig{}
-			case PropertyConfigTypePeople:
-				p = &PeoplePropertyConfig{}
-			case PropertyConfigTypeFiles:
-				p = &FilesPropertyConfig{}
-			case PropertyConfigTypeCheckbox:
-				p = &CheckboxPropertyConfig{}
-			case PropertyConfigTypeURL:
-				p = &URLPropertyConfig{}
-			case PropertyConfigTypeEmail:
-				p = &EmailPropertyConfig{}
-			case PropertyConfigTypePhoneNumber:
-				p = &PhoneNumberPropertyConfig{}
-			case PropertyConfigTypeFormula:
-				p = &FormulaPropertyConfig{}
-			case PropertyConfigTypeRelation:
-				p = &RelationPropertyConfig{}
-			case PropertyConfigTypeRollup:
-				p = &RollupPropertyConfig{}
-			case PropertyConfigCreatedTime:
-				p = &CreatedTimePropertyConfig{}
-			case PropertyConfigCreatedBy:
-				p = &CreatedTimePropertyConfig{}
-			case PropertyConfigLastEditedTime:
-				p = &LastEditedTimePropertyConfig{}
-			case PropertyConfigLastEditedBy:
-				p = &LastEditedByPropertyConfig{}
-			case PropertyConfigStatus:
-				p = &StatusPropertyConfig{}
-			case PropertyConfigUniqueID:
-				p = &UniqueIDPropertyConfig{}
-			case PropertyConfigVerification:
-				p = &VerificationPropertyConfig{}
-			case PropertyConfigButton:
-				p = &ButtonPropertyConfig{}
-			default:
-
-				return nil, fmt.Errorf("unsupported property type: %s", rawProperty["type"].(string))
-			}
-			b, err := json.Marshal(rawProperty)
-			if err != nil {
-				return nil, err
-			}
-
-			if err = json.Unmarshal(b, &p); err != nil {
-				return nil, err
-			}
-
-			result[k] = p
-		default:
-			return nil, fmt.Errorf("unsupported property format %T", v)
-		}
-	}
-
-	return result, nil
+	_ = "STUB: not implemented"
+	return *new(PropertyConfigs), nil
 }

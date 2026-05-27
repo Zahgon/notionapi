@@ -2,19 +2,12 @@ package notionapi
 
 import (
 	"context"
-	"encoding/json"
-	"errors"
-	"fmt"
-	"log"
-	"net/http"
 	"time"
 )
 
 type DatabaseID string
 
-func (dID DatabaseID) String() string {
-	return string(dID)
-}
+func (dID DatabaseID) String() string { _ = "STUB: not implemented"; return "" }
 
 type DatabaseService interface {
 	Create(ctx context.Context, request *DatabaseCreateRequest) (*Database, error)
@@ -33,24 +26,8 @@ type DatabaseClient struct {
 //
 // See https://developers.notion.com/reference/create-a-database
 func (dc *DatabaseClient) Create(ctx context.Context, requestBody *DatabaseCreateRequest) (*Database, error) {
-	res, err := dc.apiClient.request(ctx, http.MethodPost, "databases", nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response Database
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DatabaseCreateRequest represents the request body for DatabaseClient.Create.
@@ -82,24 +59,8 @@ type DatabaseCreateRequest struct {
 //
 // See https://developers.notion.com/reference/post-database-query
 func (dc *DatabaseClient) Query(ctx context.Context, id DatabaseID, requestBody *DatabaseQueryRequest) (*DatabaseQueryResponse, error) {
-	res, err := dc.apiClient.request(ctx, http.MethodPost, fmt.Sprintf("databases/%s/query", id.String()), nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response DatabaseQueryResponse
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DatabaseQueryRequest represents the request body for DatabaseClient.Query.
@@ -118,49 +79,14 @@ type DatabaseQueryRequest struct {
 
 // See https://developers.notion.com/reference/get-database
 func (dc *DatabaseClient) Get(ctx context.Context, id DatabaseID) (*Database, error) {
-	if id == "" {
-		return nil, errors.New("empty database id")
-	}
-
-	res, err := dc.apiClient.request(ctx, http.MethodGet, fmt.Sprintf("databases/%s", id.String()), nil, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response Database
-
-	err = json.NewDecoder(res.Body).Decode(&response)
-	if err != nil {
-		return nil, err
-	}
-
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Update https://developers.notion.com/reference/update-a-database
 func (dc *DatabaseClient) Update(ctx context.Context, id DatabaseID, requestBody *DatabaseUpdateRequest) (*Database, error) {
-	res, err := dc.apiClient.request(ctx, http.MethodPatch, fmt.Sprintf("databases/%s", id.String()), nil, requestBody)
-	if err != nil {
-		return nil, err
-	}
-
-	defer func() {
-		if errClose := res.Body.Close(); errClose != nil {
-			log.Println("failed to close body, should never happen")
-		}
-	}()
-
-	var response Database
-	if err := json.NewDecoder(res.Body).Decode(&response); err != nil {
-		return nil, err
-	}
-	return &response, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DatabaseUpdateRequest represents the request body for DatabaseClient.Update.
@@ -197,9 +123,7 @@ type Database struct {
 	Cover       *Image          `json:"cover,omitempty"`
 }
 
-func (db *Database) GetObject() ObjectType {
-	return db.Object
-}
+func (db *Database) GetObject() ObjectType { _ = "STUB: not implemented"; return *new(ObjectType) }
 
 type DatabaseQueryResponse struct {
 	Object     ObjectType `json:"object"`
@@ -209,15 +133,6 @@ type DatabaseQueryResponse struct {
 }
 
 func (qr *DatabaseQueryRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(struct {
-		Sorts       []SortObject `json:"sorts,omitempty"`
-		StartCursor Cursor       `json:"start_cursor,omitempty"`
-		PageSize    int          `json:"page_size,omitempty"`
-		Filter      interface{}  `json:"filter,omitempty"`
-	}{
-		Sorts:       qr.Sorts,
-		StartCursor: qr.StartCursor,
-		PageSize:    qr.PageSize,
-		Filter:      qr.Filter,
-	})
+	_ = "STUB: not implemented"
+	return nil, nil
 }
